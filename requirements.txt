@@ -1,0 +1,6 @@
+-e git+git://github.com/django/django.git@1.7c3#egg=django
+djangorestframework
+python-social-auth
+psycopg2
+pillow
+gunicorn

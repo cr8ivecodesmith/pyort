@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}pyort - Home{% endblock %}
+
+{% block main %}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <h1>Welcome to pyort</h1>
+            <p>THIS. IS. <strong>PYORTAAA!!!</strong></p>
+        </div>
+        <div class="row">
+            <div class="row">
+                <table class="table table-striped table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Pyorter</th>
+                            <th>Created</th>
+                            <th>Short URL</th>
+                            <th>Long URL</th>
+                        </tr>
+                    </thead>
+                    <tbody>{% for url in shortenedurl.all %}
+                        <tr>
+                            <td><a href="{% url 'user_profile_view' url.user.username %}">{{ url.user.username }}</a></td>
+                            <td>{{ url.created_timestamp }}</td>
+                            <td><a href="{{ url.get_absolute_short_url }}">{{ url.get_absolute_short_url }}</a></td>
+                            <td><a href="{{ url.target_url }}">{{ url.target_url }}</a></td>
+                        </tr>
+                    {% endfor %}</tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

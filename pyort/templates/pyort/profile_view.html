@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}pyort - Short URLs - {{ view_user.get_full_name|default:view_user.username }}{% endblock %}
+
+{% block main %}
+
+<section>
+    <div class="container">
+        <div class="row">
+            <h1>{{ view_user.get_full_name|default:view_user.username }}'s pyorts</h1>
+        </div>
+        <div class="row">
+        <table class="table table-striped table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Long URL</th>
+                    <th>Created</th>
+                    <th>Short URL</th>
+                </tr>
+                <tbody>{% for url in view_user.shortenedurl_set.all %}
+                    <tr>
+                        <td><a href="{{ url.target_url }}">{{ url.target_url }}</a></td>
+                        <td>{{ url.created_timestamp }}</td>
+                        <td><a href="{{ url.get_absolute_short_url }}">{{ url.get_absolute_short_url }}</a></td>
+                    </tr>
+                {% endfor %}</tbody>
+            </thead>
+        </table>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
